@@ -1,35 +1,39 @@
 from collections import deque
 
-# 도시의 개수, 도로의 개수, 거리 정보, 출발 도시 번호
-n, m, k, x = map(int, input().split())
-graph = [[] for _ in range(n + 1)]
+m,n,h = map(int,input().split()) # mn크기, h상자수
+graph = []
+queue = deque([])
 
-for _ in range(m):
-  a, b = map(int, input().split())
-  graph[a].append(b)
+for i in range(h):
+    tmp = []
+    for j in range(n):
+        tmp.append(list(map(int,input().split())))
+        for k in range(m):
+            if tmp[j][k]==1:
+                queue.append([i,j,k])
+    graph.append(tmp)
 
-# 모든 도시에 대한 거리 초기화
-distance = [-1] * (n + 1)
-distance[x] = 0  # 출발 도시까지의 거리는 0으로 설정
+dx = [-1,1,0,0,0,0]
+dy = [0,0,1,-1,0,0]
+dz = [0,0,0,0,1,-1]
 
-# 너비 우선 탐색(BFS) 수행
-q = deque([x])
-while q:
-  now = q.popleft()
-  # 현재 도시에서 이동할 수 있는 모든 도시 확인
-  for next_node in graph[now]:
-    # 아직 방문하지 않은 도시라면
-    if distance[next_node] == -1:
-      distance[next_node] = distance[now] + 1
-      q.append(next_node)
+while(queue):
+    x,y,z = queue.popleft()
 
-# 최단 거리가 k인 모든 도시의 번호를 오름차순 출력
-isExist = False
-for i in range(1, n + 1):
-  if distance[i] == k:
-    print(i)
-    isExist = True
+    for i in range(6):
+        a = x+dx[i]
+        b = y+dy[i]
+        c = z+dz[i]
+        if 0<=a<h and 0<=b<n and 0<=c<m and graph[a][b][c]==0:
+            queue.append([a,b,c])
+            graph[a][b][c] = graph[x][y][z]+1
 
-# 없다면 -1 출력
-if isExist == False:
-  print(-1)
+day = 0
+for i in graph:
+    for j in i:
+        for k in j:
+            if k==0:
+                print(-1)
+                exit(0)
+        day = max(day,max(j))
+print(day-1)
