@@ -8,7 +8,7 @@
 성공 여부: 실패
 '''
 
-### 내가 푼 코드 (실패)
+# 내가 푼 코드 (실패)
 
 from collections import deque
 
