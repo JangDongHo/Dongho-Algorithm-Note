@@ -21,7 +21,7 @@
 | 2주차(1.2~1.5)     | Implementation | 1️⃣ 상하좌우<br>1️⃣ 왕실의 나이트 | 1️⃣ 시각<br>2️⃣ 게임 개발                                                          |
 | 3주차(1.8~1.12)    | DFS/BFS                | ⬜1 [단지번호붙이기](https://www.acmicpc.net/problem/2667)                                                                  | 1️⃣◻ 음료수 얼려 먹기<br>1️⃣◻ 미로 탈출<br>1️⃣◻ 특정 거리의 도시 찾기<br>🟧5 [토마토](https://www.acmicpc.net/problem/7569)<br>⬜1 [영역 구하기](https://www.acmicpc.net/problem/2583) |
 | 4주차(1.15) | Sort | 1️⃣ 위에서 아래로<br>1️⃣ 성적이 낮은 순서로 학생 출력하기<br>1️⃣ 두 배열의 원소 교체
-| 4주차(1.16~1.19) | Binary Search |
+| 4주차(1.16~1.19) | Binary Search | 1️⃣◻ 부품 찾기 | 2️⃣ 떡볶이 떡 만들기
 | 5주차(1.22~1.26) | 다이나믹 프로그래밍 |
 | 6주차(1.29~2.2) | 최단 경로 |
 | 7주차(2.5~2.8) | 그래프 이론 |
@@ -34,4 +34,5 @@
 # Reference
 
 - 나동빈(2022) '이것이 취업을 위한 코딩 테스트다 with 파이썬' 책
+- [나동빈 '이것이 취업을 위한 코딩 테스트다 with 파이썬' 책 코드 저장소](https://github.com/ndb796/python-for-coding-test)
 - [바킹독의 실전 알고리즘 문제집](https://github.com/encrypted-def/basic-algo-lecture/blob/master/workbook.md)
