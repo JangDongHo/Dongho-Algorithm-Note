@@ -17,6 +17,7 @@
 - 결과적으로 이진 탐색을 사용하는 문제 풀이 방법의 경우 시간 복잡도는 O((M + N) * logN) 이다.
 '''
 
+### 이진 탐색을 이용한 풀이 방법 (내가 푼 코드)
 n = int(input())
 n_list = list(map(int, input().split()))
 m = int(input())
@@ -48,3 +49,35 @@ for num in m_list:
     print("no", end=" ")
   else:
     print("yes", end=" ")
+
+### 계수 정렬을 이용한 풀이 방법
+'''
+이 알고리즘의 시간 복잡도는 주어진 배열의 크기를 n, 주어진 숫자들의 개수를 m이라 할 때, 계수 정렬을 위한 배열 array를 초기화하고 업데이트하는데 O(n)의 시간이 소요되며, 이후에 각 주어진 숫자에 대해 array에서 해당 숫자를 확인하는데 O(m)의 시간이 소요됩니다. 따라서 총 시간 복잡도는 O(n + m)입니다.
+'''
+n = int(input())
+array = [0] * 1000001
+
+for i in input().split():
+  array[int(i)] = 1
+
+m = int(input())
+x = list(map(int, input().split()))
+
+for i in x:
+  if array[i] == 1:
+    print('yes', end=' ')
+  else:
+    print('no', end=' ')
+
+### 집합 자료형 이용
+n = int(input())
+array = set(map(int, input().split()))
+
+m = int(input())
+x = list(map(int, input().split()))
+
+for i in x:
+  if i in array:
+    print('yes', end=' ')
+  else:
+    print('no', end=' ')
