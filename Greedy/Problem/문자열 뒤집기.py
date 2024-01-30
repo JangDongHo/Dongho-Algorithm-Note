@@ -1,3 +1,30 @@
+'''
+난이도: 1
+목표 시간: 20분
+시간 제한: 2초
+메모리 제한: 128MB
+
+성공 여부: 성공
+풀이 시간: 19분
+'''
+
+### 내가 푼 코드
+
+data = input()
+count = [0, 0]
+now_group = int(data[0])
+
+for i in range(1, len(data)):
+  now_num = int(data[i])
+  if now_num == now_group:
+    continue
+  count[now_group] += 1
+  now_group = now_num
+
+count[int(data[-1])] += 1
+print(min(count))
+
+### 책 코드
 data = input()
 count0 = 0  # 전부 0으로 바꾸는 경우
 count1 = 0  # 전부 1로 바꾸는 경우
@@ -18,5 +45,4 @@ for i in range(len(data) - 1):
     else:
       count1 += 1
 
-print(count0, count1)
 print(min(count0, count1))
