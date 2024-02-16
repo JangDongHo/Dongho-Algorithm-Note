@@ -22,7 +22,7 @@
 | 3주차(1.8~1.12)    | DFS/BFS                | ⬜1 [단지번호붙이기](https://www.acmicpc.net/problem/2667)<br>🟧4 [인구 이동](https://www.acmicpc.net/problem/16234)| 1️⃣◻ 음료수 얼려 먹기<br>1️⃣◻ 미로 탈출<br>1️⃣◻ 특정 거리의 도시 찾기<br>🟧5 [토마토](https://www.acmicpc.net/problem/7569)<br>⬜1 [영역 구하기](https://www.acmicpc.net/problem/2583)<br> 🟧4 [연구소](https://www.acmicpc.net/problem/14502)<br>🟧5 [경쟁적 전염](https://www.acmicpc.net/problem/18405)<br>⬜1 [연산자 끼워 넣기](https://www.acmicpc.net/problem/14888)<br>🟧5 [감시 피하기](https://www.acmicpc.net/problem/18428)|
 | 4주차(1.15) | Sort | 1️⃣ 위에서 아래로<br>1️⃣ 성적이 낮은 순서로 학생 출력하기<br>1️⃣ 두 배열의 원소 교체 | ⬜4 [국영수](https://www.acmicpc.net/problem/10825)<br>⬜3 [안테나](https://www.acmicpc.net/problem/18310)<br>1️⃣◻ 실패율<br>🟧4 [카드 정렬하기](https://www.acmicpc.net/problem/1715)|
 | 4주차(1.16~1.17) | Binary Search | 1️⃣◻ 부품 찾기<br>1️⃣◻ 고정점 찾기 | 2️⃣ 떡볶이 떡 만들기<br>2️⃣ 정렬된 배열에서 특정 수의 개수 구하기<br>🟧4 [공유기 설치](https://www.acmicpc.net/problem/2110)
-| 4주차(1.17~1.19) | Dynamic Programming | | 1️⃣◻ 1로 만들기<br>2️⃣ 개미 전사<br>1️⃣◻ 바닥 공사<br>2️⃣ 효율적인 화폐 구성 |
+| 4주차(1.17~1.19) | Dynamic Programming | 1️⃣◻ 금광 | 1️⃣◻ 1로 만들기<br>2️⃣ 개미 전사<br>1️⃣◻ 바닥 공사<br>2️⃣ 효율적인 화폐 구성 |
 | 5주차(1.22) | Shortest Path | 3️⃣ 전보 | 2️⃣ 미래 도시
 | 5주차(1.23~1.26) | Graph Theory | 2️⃣ 팀 결성 | 2️⃣ 도시 분할 계획<br>3️⃣ 커리큘럼
 | 6주차(1.29~2.2) | 알고리즘 유형별 기출문제 |
