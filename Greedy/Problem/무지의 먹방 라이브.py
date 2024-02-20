@@ -48,3 +48,41 @@ def solution(food_times, k):
   # 남은 음식 중에서 몇 번째 음식인지 확인하여 출력
   result = sorted(q, key=lambda x: x[1])  # 음식의 번호 기준으로 정렬
   return result[(k - sum_value) % length][1]
+
+
+### GPT 코드
+import heapq
+
+
+def solution(food_times, k):
+  if sum(food_times) <= k:
+    return -1
+
+  # 우선순위 큐를 사용하여 음식 시간과 인덱스를 튜플로 저장
+  pq = []
+  for i in range(len(food_times)):
+    heapq.heappush(pq, (food_times[i], i + 1))
+
+  total_eaten = 0  # 방송이 중단된 시간까지 섭취한 총 음식 수
+  previous_time = 0  # 이전에 섭취한 음식까지의 누적 시간
+
+  while True:
+    if not pq:
+      break
+
+    # 현재 가장 시간이 적게 걸리는 음식의 정보를 가져옴
+    time, index = heapq.heappop(pq)
+
+    # 현재 음식을 먹는 데 걸리는 시간과 이전까지 먹은 음식들의 누적 시간을 계산
+    eaten_time = (time - previous_time) * len(pq)
+
+    # 현재 음식을 먹는 데 걸리는 시간이 방송이 중단된 시간보다 작다면
+    if total_eaten + eaten_time <= k:
+      total_eaten += eaten_time
+      previous_time = time
+    else:
+      # 남은 음식들의 시간을 계산하고 정렬된 순서대로 반환
+      result = sorted(pq, key=lambda x: x[1])
+      return result[(k - total_eaten) % len(pq)][1]
+
+  return -1

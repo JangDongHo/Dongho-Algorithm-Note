@@ -1,13 +1,33 @@
 """
 난이도: 1
-풀이 시간: 30분
+목표 시간: 30분
 시간 제한: 1초
 메모리 제한: 128MB
 기출: 2019 국가 교육기관 코딩 테스트
 
-성공 여부: 실패
+1회독 성공 여부: 실패
+2회독 성공 여부: 성공
+풀이 시간: 7분
 """
 
+### 내가 푼 코드
+N, M, K = map(int, input().split())
+num_list = list(map(int, input().split()))
+num_list.sort(reverse=True)
+
+tmp = 0
+sum = 0
+for i in range(M):
+  if tmp == K:
+    sum += num_list[1]
+    tmp = 0
+  else:
+    sum += num_list[0]
+    tmp += 1
+
+print(sum)
+
+### 책 코드
 n, m, k = map(int, input().split())
 data = list(map(int, input().split()))
 
@@ -28,7 +48,6 @@ while True:
   m -= 1
 
 print(result)
-
 """
 새롭게 배운 점
 1. input() 함수
