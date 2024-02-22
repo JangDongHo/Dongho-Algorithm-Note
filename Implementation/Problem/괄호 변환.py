@@ -4,7 +4,9 @@
 시간 제한: 1초
 메모리 제한: 128MB
 
-성공 여부: 실패
+1회독 성공 여부: 실패
+2회독 성공 여부: 성공
+풀이 시간: 40분
 '''
 '''
 접근 방법
@@ -12,6 +14,47 @@
 - 특정 문자열에서 "균형 잡힌 문자열" 의 인덱스를 반환하는 함수
 - "균형잡힌 괄호 문자열"이 "올바른 괄호 문자열"인지 확인하는 함수
 '''
+
+### 내가 푼 코드
+def algorithm(w):
+  # 입력이 빈 문자열인 경우, 빈 문자열을 반환합니다. 
+  if w == '':
+      return ''
+  # 문자열 w를 두 "균형잡힌 괄호 문자열" u, v로 분리합니다
+  is_balance = True
+  index = 0
+  count = 0
+  for c in w:
+      if c == '(':
+          count += 1
+      elif c == ')':
+          count -= 1
+      index += 1
+      if count < 0:
+          is_balance = False
+      if count == 0:
+          u = w[0:index]
+          v = w[index:len(w)]
+          break
+  if is_balance:
+      return u + algorithm(v)
+  else:
+      tmp = '('
+      tmp += algorithm(v)
+      tmp += ')'
+      u = list(u[1:len(u)-1])
+      for i in range(len(u)):
+          if u[i] == '(':
+              u[i] = ')'
+          elif u[i] == ')':
+              u[i] = '('
+      tmp += "".join(u)
+      return tmp
+
+def solution(p):
+  answer = algorithm(p)
+  print(answer)
+  return answer
 
 ### 책 코드
 # "균형잡힌 괄호 문자열"의 인덱스 반환
