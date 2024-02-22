@@ -4,7 +4,9 @@
 시간 제한: 1초
 메모리 제한: 128MB
 
-성공 여부: 실패
+1회독 성공 여부: 실패
+2회독 성공 여부: 성공
+풀이 시간: 40분
 '''
 '''
 접근 방식
@@ -34,6 +36,63 @@
 
 출처: https://hongcoding.tistory.com/127
 '''
+
+### 2회독 성공 코드
+from collections import deque
+
+N = int(input())
+K = int(input())
+bam_list = deque()  # 뱀 몸통, 꼬리 저장하는 큐
+bam_list.append((1, 1))
+
+# 맵 생성
+game_map = [[0] * (N + 1) for _ in range(N + 1)]
+for _ in range(K):
+  Y, X = map(int, input().split())
+  game_map[Y][X] = 1
+
+# 방향 정의 (북, 동, 남, 서)
+dir = 1  #동쪽
+steps = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+
+L = int(input())
+time_list = deque()
+for _ in range(L):
+  [time, command] = input().split()
+  time_list.append((int(time), command))
+
+time = 0
+while True:
+  # 방향 전환 시간 확인
+  if time_list and time_list[0][0] == time:
+    if time_list[0][1] == 'L':
+      dir -= 1
+      if dir < 0:
+        dir = 3
+    if time_list[0][1] == 'D':
+      dir += 1
+      if dir > 3:
+        dir = 0
+    time_list.popleft()
+  [x, y] = bam_list[-1]
+  # 이동해보기
+  nx = x + steps[dir][0]
+  ny = y + steps[dir][1]
+  # 벽에 안 부딪혔는지 확인
+  if 0 < nx <= N and 0 < ny <= N:
+    # 자기 자신의 몸과 안 부딪혔는지 확인
+    if (nx, ny) not in bam_list:
+      # 이동한 칸에 사과가 있는지 확인
+      if game_map[ny][nx] == 1:
+        game_map[ny][nx] = 0
+      else:
+        bam_list.popleft()
+      bam_list.append((nx, ny))
+      time += 1
+      continue
+  break
+
+print(time + 1)
 
 ### 책 코드
 n = int(input())

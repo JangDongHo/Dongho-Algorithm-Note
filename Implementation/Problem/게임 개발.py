@@ -1,10 +1,12 @@
 '''
 난이도: 2
-풀이 시간: 40분
+목표 시간: 40분
 시간 제한: 1초
 메모리 제한: 128MB
 
-성공 여부: 실패
+1회독 성공 여부: 실패
+2회독 성공 여부: 성공
+풀이 시간: 27분
 '''
 
 ### 내가 푼 코드 (실패)
@@ -55,6 +57,51 @@ while True:
     # 뒤쪽 방향이 바다일 경우 반복문 탈출
     if map_data[nx][ny] == 1:
       break
+
+print(result)
+
+### 2회독 성공 코드
+from collections import deque
+
+N, M = map(int, input().split())
+A, B, d = map(int, input().split())
+game_map = []
+
+# 맵 생성
+for _ in range(N):
+  game_map.append(list(map(int, (input().split()))))
+
+# 방향 정의(북, 동, 남, 서)
+steps = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+
+# 초기 세팅
+q = deque()
+q.append((A, B))
+game_map[A][B] = 2
+result = 1
+
+while q:
+  [y, x] = q.popleft()
+  is_check = False  # 네 방향 모두 확인했는지 확인하는 변수
+  # 네 방향 모두 턴
+  for _ in range(4):
+    d -= 1
+    if d == -1:
+      d = 3
+    nx = x + steps[d][1]
+    ny = y + steps[d][0]
+    if game_map[ny][nx] == 0:
+      q.append((ny, nx))
+      game_map[ny][nx] = 2
+      is_check = True
+      result += 1
+      break
+  if not is_check:
+    nx = x + steps[d][1] * -1
+    ny = y + steps[d][0] * -1
+    if game_map[ny][nx] == 0:
+      q.append((ny, nx))
+      game_map[ny][nx] = 2
 
 print(result)
 
