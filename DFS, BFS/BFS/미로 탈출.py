@@ -1,10 +1,12 @@
 '''
 난이도: 1.5
-풀이 시간: 30분
+목표 시간: 30분
 시간 제한: 1초
 메모리 제한: 128MB
 
-성공 여부: 실패
+1회독 성공 여부: 실패
+2회독 성공 여부: 성공
+풀이 시간: 20분
 '''
 
 ### 내가 푼 코드 (실패)
@@ -61,8 +63,39 @@ for _ in range(n):
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
+### 2회독 성공 코드
+from collections import deque
 
-# BFS 코드 구현
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+
+
+def bfs(x, y, miro_map):
+  q = deque()
+  q.append((x, y))
+  while q:
+    x, y = q.popleft()
+    for i in range(4):
+      nx = x + dx[i]
+      ny = y + dy[i]
+      if 0 <= nx < len(miro_map[0]) and 0 <= ny < len(miro_map):
+        if miro_map[ny][nx] == 1:
+          print(nx, ny)
+          q.append((nx, ny))
+          miro_map[ny][nx] = miro_map[y][x] + 1
+  return miro_map[-1][-1]
+
+
+N, M = map(int, input().split())
+miro_map = []
+
+for _ in range(N):
+  miro_map.append(list(map(int, input())))
+
+print(bfs(0, 0, miro_map))
+
+
+### 책 코드
 def bfs(x, y):
   queue = deque()
   queue.append((x, y))
