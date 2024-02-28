@@ -7,19 +7,22 @@
 성공 여부: 실패
 '''
 
-n, m = map(int, input().split())
-array = []
-for _ in range(n):
-  array.append(int(input()))
+N, M = map(int, input().split())
+coin_list = []
+dp = [10001] * (M + 1)
+for _ in range(N):
+  coin_list.append(int(input()))
 
-d = [10001] * (m + 1)
-d[0] = 0
+dp[0] = 0
+for coin in coin_list:
+  for i in range(coin, M + 1):
+    dp[i] = min(dp[i], dp[i - coin] + 1)
 
-for money_type in array:
-  for i in range(money_type, m + 1):
-    d[i] = min(d[i], d[i - money_type] + 1)
-
-if d[m] == 10001:
+# 출력
+result = dp[M]
+if result > 10000:
   print(-1)
 else:
-  print(d[m])
+  print(result)
+
+
