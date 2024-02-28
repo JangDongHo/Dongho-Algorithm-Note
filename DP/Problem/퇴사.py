@@ -15,6 +15,20 @@
 - max_value는 뒤에서부터 계산할 때, 현재까지의 최대 상담 금액에 해당하는 변수이다.
 '''
 
+### Bottom-Up 방식
+import sys
+
+N = int(input())
+schedule = [list(map(int, sys.stdin.readline().split())) for i in range(N)]
+dp = [0 for i in range(N+1)]
+
+for i in range(N):
+  for j in range(i + schedule[i][0], N+1):
+    dp[j] = max(dp[j], dp[i] + schedule[i][1])
+
+print(dp[-1])
+
+### Top-Down 방식
 N = int(input())
 time_list = []
 point_list = []
