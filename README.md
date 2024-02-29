@@ -23,7 +23,7 @@
 | 4주차(1.15) | Sort | 1️⃣ 위에서 아래로<br>1️⃣ 성적이 낮은 순서로 학생 출력하기<br>1️⃣ 두 배열의 원소 교체<br>⬜4 [국영수](https://www.acmicpc.net/problem/10825)(2) |⬜3 [안테나](https://www.acmicpc.net/problem/18310)(2)<br>1️⃣◻ [실패율](https://school.programmers.co.kr/learn/courses/30/lessons/42889)(2)<br>🟧4 [카드 정렬하기](https://www.acmicpc.net/problem/1715)(2)|
 | 4주차(1.16~1.17) | Binary Search | 1️⃣◻ 부품 찾기<br>1️⃣◻ 고정점 찾기<br>2️⃣ 정렬된 배열에서 특정 수의 개수 구하기(2) | 2️⃣ 떡볶이 떡 만들기(2)<br>🟧4 [공유기 설치](https://www.acmicpc.net/problem/2110)(2)
 | 4주차(1.17~1.19) | Dynamic Programming | 1️⃣◻ 금광<br>1️⃣◻ 편집 거리<br>⬜1 [정수 삼각형](https://www.acmicpc.net/problem/1932)(2) | 1️⃣◻ 1로 만들기(2)<br>2️⃣ 개미 전사(2)<br>1️⃣◻ 바닥 공사(2)<br>2️⃣ 효율적인 화폐 구성(2)<br>⬜3 [퇴사](https://www.acmicpc.net/problem/14501)(2)<br>⬜2 [병사 배치하기](https://www.acmicpc.net/problem/18353)(2)<br>1️⃣◻ 못생긴 수(2) |
-| 5주차(1.22) | Shortest Path | 3️⃣ 전보<br>2️⃣ 미래 도시(2) | 🟧4 [플로이드](https://www.acmicpc.net/problem/11404)
+| 5주차(1.22) | Shortest Path | 3️⃣ 전보<br>🟧4 [플로이드](https://www.acmicpc.net/problem/11404)<br>2️⃣ 미래 도시(2) |
 | 5주차(1.23~1.26) | Graph Theory | 2️⃣ 팀 결성 | 2️⃣ 도시 분할 계획<br>3️⃣ 커리큘럼
 | 6주차(1.29~2.2) | 알고리즘 유형별 기출문제 |
 | 7주차(2.5~2.8) | 알고리즘 유형별 기출문제 |
