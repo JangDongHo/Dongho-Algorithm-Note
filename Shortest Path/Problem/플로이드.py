@@ -15,43 +15,33 @@
 
 ### 내가 푼 코드
 
-import sys
+N = int(input())  # 도시의 개수
+M = int(input())  # 버스의 개수
 
-n = int(sys.stdin.readline())
-m = int(sys.stdin.readline())
+# DP 2차원 테이블 생성
+dp = [[1e9] * (N + 1) for _ in range(N + 1)]
 
-# 맵 생성
-graph = [[] for _ in range(n + 1)]
-for _ in range(m):
-  a, b, c = map(int, sys.stdin.readline().split())
-  graph[a].append((b, c))
+# DP 테이블 초기 세팅
+for i in range(1, N + 1):
+  for j in range(1, N + 1):
+    if i == j:
+      dp[i][j] = 0
 
-# DP 초기 세팅
-dp = [[0] * (n + 1) for _ in range(n + 1)]
-for i in range(1, n + 1):
-  for j in range(1, n + 1):
-    if i != j:
-      # 최소값 찾기
-      min_cost = 1e9
-      for b, c in graph[i]:
-        if b == j:
-          min_cost = min(min_cost, c)
-      dp[i][j] = min_cost
+# 노선, 세팅
+for _ in range(M):
+  a, b, c = map(int, input().split())  # 버스의 시작 도시, 도착 도시, 비용
+  dp[a][b] = min(dp[a][b], c)
 
-# 플로이드 워셜 알고리즘
-for k in range(1, n + 1):
-  for i in range(1, n + 1):
-    for j in range(1, n + 1):
+# 플루이드 워셜 알고리즘
+for k in range(1, N + 1):
+  for i in range(1, N + 1):
+    for j in range(1, N + 1):
       dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][j])
 
 # 출력
-for i in range(1, n + 1):
-  line = dp[i]
-  for j in range(1, n + 1):
-    if dp[i][j] == 1e9:
-      print(0, end=' ')
-    else:
-      print(line[j], end=' ')
+for i in range(1, N + 1):
+  for j in range(1, N + 1):
+    print(dp[i][j] if dp[i][j] != 1e9 else 0, end=' ')
   print()
 
 ### 책코드
