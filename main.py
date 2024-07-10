@@ -1,18 +1,14 @@
-def fibo_func(x):
-	global arr
-
+def func(k):
 	# base case
-	if arr[x] != -1:
-		return arr[x]
+	if k == 0:
+		return '-'
 
 	# recursive case
-	arr[x] = fibo_func(x - 1) + fibo_func(x - 2)
-	return arr[x]
+	return func(k-1) + ' ' * (3 ** (k-1)) + func(k-1)
 
-n = int(input())
-
-arr = [-1] * (n + 2)
-arr[0] = 0
-arr[1] = 1
-
-print(fibo_func(n))
+while True:
+	try:
+		N = int(input())
+		print(func(N))
+	except:
+		break
