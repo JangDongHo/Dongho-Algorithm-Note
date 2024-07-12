@@ -1,4 +1,4 @@
-# 1. 내가 처음 제출한 코드 (직접 구현)
+### 풀이1. 내가 처음 제출한 코드 (직접 구현)
 # 모음 개수 세는 함수
 def count_vowel(password):
 	cnt = 0
@@ -32,7 +32,7 @@ password = []
 combination(0, 0)
 
 
-# 2. 직접 구현 다른 풀이
+### 풀이2. 직접 구현 다른 풀이
 vows = ['a', 'e', 'i', 'o', 'u']
 choose = []
 
@@ -70,7 +70,7 @@ arr.sort()
 
 combination(0, 0)
 
-# 3. 라이브러리 이용
+### 풀이3. 라이브러리 이용
 from itertools import combinations
 
 
