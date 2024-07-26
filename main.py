@@ -1,30 +1,22 @@
 from itertools import permutations
 
-def calculate_ball_strike(num1, num2):
-    ball = 0
-    strike = 0
+def fact(x):
+	if x == 0:
+		return 1
+	return fact(x - 1) * x
 
-    for i in range(3):
-        if num1[i] == num2[i]:
-            strike += 1
-        elif num1[i] in num2:
-            ball += 1
+S = input()
+ans = 0
 
-    return strike, ball
+for perm in permutations(S):
+	ok = True
+	for i in range(0, len(S) - 1):
+		if perm[i] == perm[i + 1]:
+			ok = False
+			break
+	ans += ok
 
-N = int(input())
-questions = [input().split() for _ in range(N)]
-questions = [(question, int(strike), int(ball)) for question, strike, ball in questions]
-result = 0
+for i in range(ord('a'), ord('z') + 1):
+	ans //= fact(S.count(chr(i)))
 
-for candidate in permutations(range(1, 10), 3):
-    candidate_str = ''.join(map(str, candidate))
-    is_answer = True
-    for question, strike, ball in questions:
-        if calculate_ball_strike(question, candidate_str) != (strike, ball):
-            is_answer = False
-            break
-    if is_answer:
-        result += 1
-
-print(result)
+print(ans)
