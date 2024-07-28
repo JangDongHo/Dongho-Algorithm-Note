@@ -1,22 +1,14 @@
-from itertools import permutations
+N = 11
 
-def fact(x):
-	if x == 0:
-		return 1
-	return fact(x - 1) * x
+current_num = N
+use4 = current_num // 4
+current_num %= 4
+use2 = current_num // 2
+current_num %= 2
+use1 = current_num // 1
+current_num %= 1
 
-S = input()
-ans = 0
-
-for perm in permutations(S):
-	ok = True
-	for i in range(0, len(S) - 1):
-		if perm[i] == perm[i + 1]:
-			ok = False
-			break
-	ans += ok
-
-for i in range(ord('a'), ord('z') + 1):
-	ans //= fact(S.count(chr(i)))
-
-print(ans)
+print(f"1을 사용한 횟수: {use1}")
+print(f"2을 사용한 횟수: {use2}")
+print(f"4을 사용한 횟수: {use4}")
+print(f"사용한 동전의 총 개수: {use1 + use2 + use4}")
