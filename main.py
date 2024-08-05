@@ -1,12 +1,13 @@
-N = int(input())
-arr_A = list(map(int, input().split()))
-arr_B = list(map(int, input().split()))
+N, M = map(int, input().split())
 
-arr_A = sorted(arr_A)
-arr_B = sorted(arr_B, reverse=True)
+arr = [[0] + list(map(int, input().split())) for _ in range(N)]
+arr = [[0] * (M + 1)] + arr
 
-S = 0
-for a, b in zip(arr_A, arr_B):
-	S += a * b
+dp = [[0 for _ in range(M + 1)] for _ in range(N + 1)]
 
-print(S)
+for i in range(1, N + 1):
+    for j in range(1, M + 1):
+        dp[i][j] = arr[i][j]
+        dp[i][j] += max(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])
+
+print(dp[N][M])
