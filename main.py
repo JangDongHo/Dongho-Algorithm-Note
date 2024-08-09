@@ -1,32 +1,19 @@
-import sys
-sys.setrecursionlimit(int(1e6))
+N, K = map(int, input().split())
 
-def func(n, m): # dp[n][m]을 반환
-    global s1, s2, dp
+W = [0]
+V = [0]
 
-    # base case
-    if n == 0 or m == 0:
-        return 0
+for _ in range(N):
+    w, v = map(int, input().split())
+    W.append(w)
+    V.append(v)
 
-    if dp[n][m] != -1:
-        return dp[n][m]
+dp = [[0 for _ in range(K + 1)] for _ in range(N + 1)]
 
-    # recursive case
-    if s1[n] == s2[m]:
-        dp[n][m] = func(n - 1, m - 1) + 1
-    else:
-        dp[n][m] = max(func(n - 1, m), func(n, m - 1))
+for n in range(1, N + 1):
+    for k in range(1, K + 1): # dp[n][k]
+        dp[n][k] = dp[n - 1][k]
+        if k - W[n] >= 0:
+            dp[n][k] = max(dp[n][k], dp[n - 1][k - W[n]] + V[n])
 
-    return dp[n][m]
-
-
-s1 = input()
-s2 = input()
-
-N, M = len(s1), len(s2)
-s1 = " " + s1
-s2 = " " + s2
-
-dp = [[-1] * (M + 1) for _ in range(N + 1)]
-
-print(func(N, M))
+print(dp)
