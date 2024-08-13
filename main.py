@@ -1,35 +1,50 @@
-def sum_arr(chess, sy, sx):
-	global board
-	sum = 0
+def check_board(x, y):
+	global N, board
+	best = 0
 
-	for i in range(8):
-		for j in range(8):
-			sum += board[sy + i][sx + j] != chess[i][j]
+	count = 0
+	bef = '-'
+	for i in range(N):
+		if board[y][i] == bef:
+			count += 1
+		else:
+			count = 1
+		bef = board[y][i]
+		best = max(best, count)
 
-	return sum
+	count = 0
+	bef = '-'
+	for j in range(N):
+		if board[j][x] == bef:
+			count += 1
+		else:
+			count = 1
+		bef = board[j][x]
+		best = max(best, count)
 
-
-# Init
-chess1 = [['' for _ in range(8)] for _ in range(8)]
-chess2 = [['' for _ in range(8)] for _ in range(8)]
-
-for i in range(8):
-	for j in range(8):
-		chess1[i][j] = 'B' if (i + j) % 2 == 0 else 'W'
-		chess2[i][j] = 'W' if (i + j) % 2 == 0 else 'B'
+	return best
 
 # Input
-N, M = map(int, input().split())
-board = [input() for _ in range(N)]
+N = int(input())
+board = [list(input()) for _ in range(N)]
 
-# Solve
-best = int(1e9)
+# Init
+dy = [-1, 0, 1, 0]
+dx = [0, 1, 0, -1]
+answer = 0
+
+# Brute Force
 for y in range(N):
-	for x in range(M):
-		if (y + 7 >= N) or (x + 7 >= M):
-			continue
-		case1 = sum_arr(chess1, y, x)
-		case2 =	sum_arr(chess2, y, x)
-		best = min(best, case1, case2)
+	for x in range(N):
+		if y == x:
+			answer = max(answer, check_board(x, y))
+		for i in range(4):
+			nx = x + dx[i]
+			ny = y + dy[i]
+			if (0 <= nx < N) and (0 <= ny < N):
+				if board[y][x] != board[ny][nx]:
+					board[ny][nx], board[y][x] = board[y][x], board[ny][nx]
+					answer = max(answer, check_board(x, y))
+					board[ny][nx], board[y][x] = board[y][x], board[ny][nx]
 
-print(best)
+print(answer)
