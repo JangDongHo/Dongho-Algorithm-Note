@@ -1,3 +1,21 @@
+# https://www.acmicpc.net/problem/1912
+
+### 풀이1. DP(Bottom-Up)
+
+# Input
+N = int(input())
+arr = [0] + list(map(int, input().split()))
+
+# Solve
+dp = [0] * (N+1)
+
+for i in range(1, N+1):
+	dp[i] = max(arr[i], dp[i-1]+arr[i])
+
+print(max(dp[1:]))
+
+### 풀이2. DP(Top-Down)
+
 import sys
 sys.setrecursionlimit(int(1e6))
 INF = int(1e12)

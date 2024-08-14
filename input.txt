@@ -1,5 +1,2 @@
-4
-PPPP
-CYZY
-CCPY
-PPCC
+5
+-1 -2 -3 -4 -5
