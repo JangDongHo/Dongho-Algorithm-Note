@@ -1,3 +1,5 @@
+# https://www.acmicpc.net/problem/1931
+
 # 입력값 처리
 N = int(input())
 schedules = [tuple(map(int, input().split())) for _ in range(N)]
