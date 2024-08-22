@@ -1,17 +1,17 @@
-# 입력값 처리
 N = int(input())
-schedules = [tuple(map(int, input().split())) for _ in range(N)]
 
-# 정렬
-sorted_schedules = sorted(schedules, key = lambda x : (x[1], x[0]))
+dp = [0] * (N+4)
 
-# 회의 시간 그리디하게 선택
-ans = 0
-lt = 0
+dp[1] = 0
+dp[2] = 3
+dp[3] = 3
+dp[4] = 11
+dp[5] = 11
 
-for st, et in sorted_schedules:
-	if st >= lt:
-		lt = et
-		ans += 1
+for i in range(6, N+1):
+	if i % 2 == 0:
+		dp[i] = (dp[i-2]**2 + )
+	else:
+		dp[i] = dp[i-1]
 
-print(ans)
+print(dp[N])
