@@ -1,30 +1,33 @@
 import sys
-sys.setrecursionlimit(int(1e6))
+input = lambda: sys.stdin.readline().rstrip()
 
-def binary_search(left, right, target):
-	global sorted_arr
-	# Base Case
-	if left > right:
-		return 0
+# input
+N, H = map(int, input().split())
 
-	# Recursive Case
-	mid = (left + right) // 2
-	if sorted_arr[mid] == target:
-		return 1
-	elif sorted_arr[mid] < target:
-		return binary_search(mid+1, right, target)
+tops = [0] * (H + 1)
+bots = [0] * (H + 1)
+
+for i in range(N):
+	num = int(input())
+	if i % 2 == 0:
+		bots[num] += 1
 	else:
-		return binary_search(left, mid, target)
+		tops[H - num + 1] += 1
 
-# 입력값
-N = int(input())
-arr = list(map(int, input().split()))
-M = int(input())
-find_arr = list(map(int, input().split()))
+# solve
+mn = int(1e12)
+mn_num = 0
 
-# 문제 해결(이분 탐색)
-sorted_arr = sorted(arr)
+cnt = N // 2
+for h in range(1, H + 1):
+    cnt -= bots[h - 1]
+    cnt += tops[h]
+	
+    if mn == cnt:
+        mn_num += 1
 
-for target in find_arr:
-	result = binary_search(0, len(sorted_arr) - 1, target)
-	print(result)
+    if mn > cnt:
+        mn = cnt
+        mn_num = 1
+
+print(mn, mn_num)
