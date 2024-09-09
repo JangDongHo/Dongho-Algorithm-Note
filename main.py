@@ -1,35 +1,37 @@
+# https://www.acmicpc.net/problem/13397
+
+### 풀이1. 파라매트릭 서치
 import sys
 input = lambda: sys.stdin.readline().rstrip()
 
-def is_possible(d):
-	global arr, N, C
+MAX_NUM = 10_000
 
-	cnt = 1
-	prev_x = arr[0]
+def is_possible(k):
+	global arr, N, M
+
+	min_num = arr[0]
+	max_num = arr[0]
+	cnt = 0
+
 	for i in range(1, N):
-		cur_x = arr[i]
-		if cur_x - prev_x >= d:
+		if arr[i] > max_num:
+			max_num = arr[i]
+		if arr[i] < min_num:
+			min_num = arr[i]
+
+		gap = max_num - min_num
+		if gap > k:
+			max_num = arr[i]
+			min_num = arr[i]
 			cnt += 1
-			prev_x = arr[i]
-	
-	return (cnt >= C)
+	cnt += 1
 
-def parametric_search():
-	cur = -1
-	step = int(1e9) + 1
+	return (cnt <= M)
 
-	while step != 0:
-		while (cur + step <= int(1e9)) and is_possible(cur + step):
-			cur += step
-		step //= 2
+N, M = map(int, input().split())
+arr = list(map(int, input().split()))
 
-	return cur
-
-
-# Input
-N, C = map(int, input().split())
-arr = sorted([int(input()) for _ in range(N)])
-
-# Solve
-max_dis = parametric_search()
-print(max_dis)
+for i in range(0, MAX_NUM):
+	if is_possible(i):
+		print(i)
+		break
