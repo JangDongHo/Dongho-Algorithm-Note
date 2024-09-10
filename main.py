@@ -1,37 +1,31 @@
-# https://www.acmicpc.net/problem/13397
+def is_exist(left): # binary search
+    global N, M, psum
 
-### 풀이1. 파라매트릭 서치
-import sys
-input = lambda: sys.stdin.readline().rstrip()
+    cur = left - 1
+    step = N
 
-MAX_NUM = 10_000
+    while step != 0:
+        while (cur + step <= N) and (psum[cur + step] - psum[left - 1] <= M):
+            cur += step
+        step //= 2
 
-def is_possible(k):
-	global arr, N, M
+    return (psum[cur] - psum[left - 1] == M)
 
-	min_num = arr[0]
-	max_num = arr[0]
-	cnt = 0
 
-	for i in range(1, N):
-		if arr[i] > max_num:
-			max_num = arr[i]
-		if arr[i] < min_num:
-			min_num = arr[i]
-
-		gap = max_num - min_num
-		if gap > k:
-			max_num = arr[i]
-			min_num = arr[i]
-			cnt += 1
-	cnt += 1
-
-	return (cnt <= M)
-
+# input
 N, M = map(int, input().split())
-arr = list(map(int, input().split()))
+arr = [0] + list(map(int, input().split()))
 
-for i in range(0, MAX_NUM):
-	if is_possible(i):
-		print(i)
-		break
+# solve
+psum = [0] * (N + 1)
+
+for i in range(1, N + 1):
+    psum[i] = psum[i - 1] + arr[i]
+
+print(psum)
+
+ans = 0
+for left in range(1, N + 1):
+    ans += is_exist(left)
+
+print(ans)
