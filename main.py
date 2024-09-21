@@ -1,33 +1,34 @@
-MAX_NUM = 100_001
-
-def parametric_search(left):
-	global N, S, psum
-
-	cur = left - 1
-	step = N
-
-	while (step != 0):
-		while (cur + step <= N) and (psum[cur + step] - psum[left - 1] < S):
-			cur += step
-		step //= 2
-
-	return (cur + 1)
-
 # Input
-N, S = map(int, input().split())
-arr = [0] + list(map(int, input().split()))
+T = int(input())
 
-# Solve (Prefix Sum + Parametric Search)
-psum = [0] * (N + 1)
+for _ in range(T):
+	text = input()
 
-for i in range(1, N+1):
-	psum[i] = psum[i-1] + arr[i]
+	# Solve
+	ans = 0
 
-ans = MAX_NUM
+	right = len(text) - 1
 
-for left in range(1, N+1):
-	right = parametric_search(left)
-	if right <= N:
-		ans = min(ans, right - left + 1)
+	for left in range(len(text)):
+		print(left, right, ans)
+		# 회문 여부 확인
+		while (left < right) and (text[left] == text[right]):
+			left += 1
+			right -= 1
 
-print(ans if ans != MAX_NUM else 0)
+		if (left > right):
+			break
+
+		# 유사 회문 여부 확인
+		if (left + 1 < len(text)) and (text[left + 1] == text[right]):
+			print(left, right, ans)
+			left += 1
+			ans += 1
+		elif (right - 1 >= 0) and (text[right - 1] == text[left]):
+			print(left, right, ans)
+			right -= 1
+			ans += 1
+
+
+
+	print(ans)
