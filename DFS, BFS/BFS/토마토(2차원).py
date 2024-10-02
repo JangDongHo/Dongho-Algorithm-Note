@@ -1,3 +1,49 @@
+# https://www.acmicpc.net/problem/7576
+
+### 풀이1. BFS 알고리즘
+from collections import deque
+
+# Input
+M, N = map(int, input().split()) # M: 가로, N: 세로
+adj_list = [] # 1: 익은 토마토, 0: 익지 않은 토마토, -1: 빈 칸
+for _ in range(N):
+	adj_list.append(list(map(int, input().split())))
+visited = [[-1 for _ in range(M)] for _ in range(N)]
+
+# Solve(BFS)
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+
+q = deque()
+
+for y in range(N):
+	for x in range(M):
+		if adj_list[y][x] == 1:
+			q.append((x, y))
+			visited[y][x] = 0
+
+while q:
+	x, y = q.popleft()
+
+	for i in range(4):
+		nx = x + dx[i]
+		ny = y + dy[i]
+
+		if (0 <= nx < M) and (0 <= ny < N) and (visited[ny][nx] == -1) and (adj_list[ny][nx] != -1):
+			q.append((nx, ny))
+			visited[ny][nx] = visited[y][x] + 1
+			adj_list[ny][nx] = 1
+
+max_ans = -1
+for y in range(N):
+	for x in range(M):
+		if adj_list[y][x] == 0:
+			print(-1)
+			exit()
+		max_ans = max(max_ans, visited[y][x])
+print(max_ans)
+
+### 풀이2. 풀이1 개선
 from collections import deque
 
 # Input
@@ -36,4 +82,3 @@ for row in adj_list:
 
 # 첫날이 1로 표시되었으므로 1을 빼줌
 print(max_days - 1)
-print(adj_list)
