@@ -1,39 +1,29 @@
-from collections import deque
+from queue import PriorityQueue
 
-# Input
-M, N = map(int, input().split())  # M: 가로, N: 세로
-adj_list = [list(map(int, input().split())) for _ in range(N)]  # 토마토 상태 입력
+INF = int(1e12)
+N = 5
 
-# BFS 탐색을 위한 방향 설정 (상, 하, 좌, 우)
-directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+adj_list = [[] for _ in range(N)]
+dist = [INF] * N
 
-# 익은 토마토의 위치를 큐에 미리 추가
-q = deque()
-for y in range(N):
-    for x in range(M):
-        if adj_list[y][x] == 1:
-            q.append((x, y))
+# Create Adjacency List
+adj_list[0].append([1, 5]); adj_list[0].append([3, 1]);
+adj_list[1].append([2, 2])
+adj_list[2].append([4, 2])
+adj_list[3].append([1, 2]); adj_list[3].append([4, 7]);
 
-# BFS 탐색
-while q:
-    x, y = q.popleft()
+# Execute Dijkstra Algorithm with standard(start) node '0'
+pq = PriorityQueue()
+pq.put([0, 0])
+dist[0] = 0
 
-    for dx, dy in directions:
-        nx, ny = x + dx, y + dy
+while not pq.empty(): # pq.queue
+    cur_dist, cur_node = pq.get()
+    for adj_node, adj_dist in adj_list[cur_node]:
+        temp_dist = cur_dist + adj_dist
+        if temp_dist < dist[adj_node]:
+            pq.put([temp_dist, adj_node])
+            dist[adj_node] = temp_dist
 
-        # 범위 내에 있고, 익지 않은 토마토가 있는 경우
-        if 0 <= nx < M and 0 <= ny < N and adj_list[ny][nx] == 0:
-            adj_list[ny][nx] = adj_list[y][x] + 1  # 날짜를 1씩 증가시킴
-            q.append((nx, ny))
-
-# 결과 계산
-max_days = 0
-for row in adj_list:
-    if 0 in row:  # 익지 않은 토마토가 남아있는 경우
-        print(-1)
-        exit()
-    max_days = max(max_days, max(row))
-
-# 첫날이 1로 표시되었으므로 1을 빼줌
-print(max_days - 1)
-print(adj_list)
+# Print result
+print(dist)
