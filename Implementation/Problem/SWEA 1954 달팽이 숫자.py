@@ -1,3 +1,5 @@
+# https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PobmqAPoDFAUq&categoryId=AV5PobmqAPoDFAUq&categoryType=CODE&problemTitle=&orderBy=INQUERY_COUNT&selectCodeLang=PYTHON&select-1=2&pageSize=10&pageIndex=1
+
 # 방향 정의
 dx = [1, 0, -1, 0]
 dy = [0, 1, 0, -1]
