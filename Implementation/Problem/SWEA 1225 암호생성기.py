@@ -1,3 +1,29 @@
+# https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV14uWl6AF0CFAYD
+
+## 접근1. 브루트 포스 - O(1)
+
+from collections import deque
+
+T = 10
+for _ in range(T):
+	tc = int(input())
+	q = deque(list(map(int, input().split())))
+	
+	cnt = 1
+	while q[-1] > 0:
+		if cnt >= 6:
+			cnt = 1
+		left = q.popleft()
+		q.append(left - cnt)
+		cnt += 1
+	if q[-1] < 0:
+		q[-1] = 0
+
+	ans = " ".join(map(str, q))
+	print(f"#{tc} {ans}")
+
+## 접근2. 접근1 시간 복잡도 개선 - O(1)
+
 T = 10
 for _ in range(T):
     tc = int(input())
