@@ -1,3 +1,5 @@
+# https://swexpertacademy.com/main/learn/course/lectureProblemViewer.do
+
 MAX_NUM = int(1e9)
 
 def dfs(idx, cnt):
