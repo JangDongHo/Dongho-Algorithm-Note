@@ -12,9 +12,6 @@ def get_idx(lst, value):
         step //= 2
     
     return cur
-
-def solution(_dice):
-    get_idx([1,2,3,4,5], 4)
     
 def get_A_wins_num(comb_A, comb_B):
     global N, dice
