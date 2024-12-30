@@ -1,3 +1,5 @@
+# https://www.acmicpc.net/problem/11478
+
 S = input()
 seen = set()
 
