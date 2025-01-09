@@ -1,3 +1,5 @@
+# https://www.acmicpc.net/problem/11729
+
 def hanoi(a, b, n):
 	# Base Case: 원판이 1개일 때는 바로 목표 기둥으로 이동시킨다.
 	if n == 1:
