@@ -1,3 +1,5 @@
+# https://www.acmicpc.net/problem/2240
+
 # 입력 받기
 T, W = map(int, input().split())
 drops = [int(input()) for _ in range(T)]
