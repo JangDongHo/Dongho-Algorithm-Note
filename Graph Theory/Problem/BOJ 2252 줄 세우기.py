@@ -1,3 +1,5 @@
+# https://www.acmicpc.net/problem/2252
+
 from collections import deque
 
 # 입력 받기 + 진입 차수 만들기
