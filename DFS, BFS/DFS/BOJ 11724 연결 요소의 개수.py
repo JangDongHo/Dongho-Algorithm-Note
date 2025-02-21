@@ -1,3 +1,5 @@
+# https://www.acmicpc.net/problem/11724
+
 import sys
 sys.setrecursionlimit(int(1e4))
 input = lambda: sys.stdin.readline()
