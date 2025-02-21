@@ -1,3 +1,5 @@
+# https://www.acmicpc.net/problem/4485
+
 from collections import deque
 INF = int(1e9)
 
