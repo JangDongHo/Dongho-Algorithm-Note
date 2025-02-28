@@ -1,3 +1,5 @@
+# https://www.acmicpc.net/problem/9375
+
 import sys
 from collections import defaultdict
 
