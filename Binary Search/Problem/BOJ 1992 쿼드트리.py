@@ -1,3 +1,5 @@
+# https://www.acmicpc.net/problem/1992
+
 def quad_tree(x, y, n):
     for ny in range(y, y + n):
         for nx in range(x, x + n):
