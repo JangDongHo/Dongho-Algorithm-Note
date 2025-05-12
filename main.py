@@ -1,42 +1,19 @@
-from collections import deque
+N, K = map(int, input().split())
+grid = [list(map(int, input().split())) for _ in range(N)]
 
-T = int(input())
+# 누적합 배열 초기화
+psum = [[0] * (N + 1) for _ in range(N + 1)]
 
-for _ in range(T):
-    # 입력 값 받기
-    N, K = map(int, input().split())
-    build_list = [0] + list(map(int, input().split()))
+# 2차원 누적합 계산
+for i in range(1, N + 1):
+    for j in range(1, N + 1):
+        psum[i][j] = psum[i - 1][j] + psum[i][j - 1] - psum[i - 1][j - 1] + grid[i - 1][j - 1]
 
-    # 그래프 및 진입 차수
-    adj_list = [[] for _ in range(N + 1)]
-    degrees = [0] * (N + 1)
-    for _ in range(K):
-        X, Y = map(int, input().split())
-        adj_list[X].append(Y)
-        degrees[Y] += 1
+# 최대 따뜻한 직원 수 구하기
+max_count = 0
+for i in range(K, N + 1):
+    for j in range(K, N + 1):
+        total = psum[i][j] - (psum[i - K][j] + psum[i][j - K] - psum[i - K][j - K])
+        max_count = max(max_count, total)
 
-    W = int(input())
-
-    q = deque()
-    dp = [0] * (N + 1)
-
-    for i in range(1, N + 1):
-        if degrees[i] == 0:
-            q.append(i)
-            dp[i] = build_list[i]
-
-    # 위상 정렬
-    while q:
-        cur_node = q.popleft()
-
-        for adj_node in adj_list[cur_node]:
-            degrees[adj_node] -= 1
-            dp[adj_node] = max(dp[adj_node], dp[cur_node] + build_list[adj_node])
-            if degrees[adj_node] == 0:
-                q.append(adj_node)
-
-        if cur_node == W:
-            break
-
-    print(dp[W])
-
+print(max_count)
