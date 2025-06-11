@@ -1,18 +1,10 @@
-import sys
-input = sys.stdin.readline
+N, r, c = map(int, input().split())
 
-# 입력 값 받기
-N, M = map(int, input().split())
+def sol(N, r, c):
 
-# 딕셔너리 생성
-passwords = {}
+    if N == 0:
+        return 0
+        
+    return 2 * (r % 2)+(c % 2) + 4 * sol(N - 1, r // 2, c // 2)
 
-# N개의 사이트 주소와 비밀번호 저장
-for _ in range(N):
-    site, pw = input().split()
-    passwords[site] = pw
-
-# M개의 사이트 주소를 입력받고 비밀번호 출력
-for _ in range(M):
-    site = input().strip()
-    print(passwords[site])
+print(sol(N, r, c))
