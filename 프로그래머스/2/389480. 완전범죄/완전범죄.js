@@ -1,32 +1,33 @@
 function solution(info, n, m) {
-    // 1. 2차원 DP 생성
-    const dp = Array.from({ length: info.length + 1 }, () =>
-        Array(m).fill(Infinity)
-    );
+    const N = info.length;
+    const INF = 1e9;
+    
+    // 1. DP 생성
+    const dp = Array.from({ length: N + 1 }, () => Array(m).fill(INF));
     
     // 2. DP 초기화
     dp[0][0] = 0;
     
-    // 3. DP 점화식
-    for (let i = 1; i <= info.length; i++) {
-        const [a_cost, b_cost] = info[i - 1];
+    // 3. 점화식
+    for (let i = 0; i < N; i++) {
+        const [aCost, bCost] = info[i];
         
         for (let b = 0; b < m; b++) {
-            if (dp[i - 1][b] + a_cost < n) {
-                dp[i][b] = Math.min(dp[i][b], dp[i - 1][b] + a_cost)
+            if (dp[i][b] === INF) continue;
+            
+            // A 도둑이 i번 물건을 훔치는 경우
+            if (dp[i][b] + aCost < n) {
+                dp[i + 1][b] = Math.min(dp[i + 1][b], dp[i][b] + aCost)
             }
             
-            if (b + b_cost < m) {
-                dp[i][b + b_cost] = Math.min(dp[i][b + b_cost], dp[i - 1][b]);
+            // B 도둑이 i번 물건을 훔치는 경우
+            if (b + bCost < m) {
+                dp[i + 1][b + bCost] = Math.min(dp[i + 1][b + bCost], dp[i][b])   
             }
         }
     }
-
-    // 4. 최종 답 구하기
-    let answer = Infinity;
-    for (let b = 0; b < m; b++) {
-        answer = Math.min(answer, dp[info.length][b]);
-    }
-    return answer === Infinity ? -1 : answer;
     
+    // 4. 최종 답
+    const answer = Math.min(...dp[N]);
+    return answer === INF ? -1 : answer;
 }
