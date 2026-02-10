@@ -16,7 +16,7 @@ https://www.acmicpc.net/problem/10808
 
 ### Learned (새롭게 알게 된 점)
 
-- `ord()`` 메소드를 통해 문자 → 아스키 변환 방식 복습
+- `ord()` 메소드를 통해 문자 → 아스키 변환 방식 복습
 
 ### Lacked (부족했던 점)
 
