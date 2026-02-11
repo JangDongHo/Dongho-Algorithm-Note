@@ -26,6 +26,6 @@ https://www.acmicpc.net/problem/10808
 
 - 공식 문서에서 내장 함수 검색 습관 만들기
 
-### Liked
+### Liked (좋았던 점)
 
 - 26개 배열 + 아스키 인덱싱 접근을 빠르게 떠올림

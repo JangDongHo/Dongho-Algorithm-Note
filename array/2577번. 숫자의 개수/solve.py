@@ -1,7 +1,6 @@
-""" solve2.py for 2577번. 숫자의 개수 """
+""" solve.py for 2577번. 숫자의 개수 """
 
 import sys
-from collections import Counter
 
 
 def sys_input() -> str:
@@ -9,9 +8,12 @@ def sys_input() -> str:
 
 
 def solve(A: int, B: int, C: int) -> list[int]:
-    num = str(A * B * C)
-    counter = Counter(num)
-    print(counter)
+    number = str(A * B * C)
+
+    counts = [0] * 10
+    for n in number:
+        counts[int(n)] += 1
+    return counts
 
 
 def main() -> None:
